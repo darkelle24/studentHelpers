@@ -1,0 +1,42 @@
+<div class="page">
+    <h1 class="title">Money</h1>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let item2 of list2" (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Bourse
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="country-list">
+                <p>sqdddddddddddddddddddddddddddddddddddddddddqqqqqsqdsqsdsqdqs</p>
+                <h3></h3>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Lien d'aide
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <mat-card *ngFor="let item of list" class="one-country clickable mat-elevation-z4" (click)="goTo(item)">
+                            <mat-card-header class="title">
+                                <mat-card-title>Info</mat-card-title>
+                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+                                </p>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-expansion-panel>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

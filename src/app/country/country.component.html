@@ -1,0 +1,18 @@
+<div class="page">
+    <mat-form-field class="searchBar" appearance="outline">
+        <mat-label>Clearable input</mat-label>
+        <input matInput type="text" [(ngModel)]="value">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <div class="country-list">
+        <mat-card *ngFor="let item of list" class="one-country clickable mat-elevation-z4" (click)="goTo(item)">
+            <mat-card-header class="title">
+                <mat-card-title>Belgium</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="countryFlag" src="../../assets/belgium-flag-png-xl.png" alt="Photo of a Shiba Inu">
+        </mat-card>
+    </div>
+</div>
