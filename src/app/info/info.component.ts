@@ -8,8 +8,39 @@ import { Router } from '@angular/router';
 })
 export class InfoComponent implements OnInit {
 
-  list: any[] = [{ goTo: "Money" }]
-  list2: any[] = [{ goTo: "Money" }, { goTo: "Money" }]
+  list: any[] = [
+    {
+      name: "Bourse",
+      info: [
+        "Si tu pars de trois à douze mois dans le cadre du programme Erasmus, tu bénéficieras d’une allocation qui t’aidera à financer une partie de ton séjour. Tu peux t’attendre à recevoir entre 150 et 250 euros par mois pour un échange en Belgique. Cette allocation peut aller jusqu’à 400 euros par mois si tu effectues un stage inclut dans tes études.",
+        "Si tu pars hors Erasmus, sache que les communautés françaises et néerlandaises offrent des bourses sur critères sociaux aux citoyens européens. Renseigne-toi sur le site de la Fédération Wallonie-Bruxelles.",
+        "A noter, si vous êtes boursier sur critères sociaux, vous continuez de percevoir les versements de votre bourse."
+      ],
+      links: [
+        {
+          link: "https://www.orientation.com/bourse-erasmus-plus",
+          name: "Orientation",
+          subtitle: "Aide Bourse erasmus",
+          imageLink: "../../assets/orientation.png",
+          description: [
+            "Permet de savoir si ton universiter et partenaire avec Erasmus+",
+            "Permet aussi de calculer le montant de ta bourse Erasmus+"
+          ]
+        }
+      ]
+    },
+    {
+      name: "Bourse",
+      info: [
+        "Si tu pars de trois à douze mois dans le cadre du programme Erasmus, tu bénéficieras d’une allocation qui t’aidera à financer une partie de ton séjour. Tu peux t’attendre à recevoir entre 150 et 250 euros par mois pour un échange en Belgique. Cette allocation peut aller jusqu’à 400 euros par mois si tu effectues un stage inclut dans tes études.",
+        "Si tu pars hors Erasmus, sache que les communautés françaises et néerlandaises offrent des bourses sur critères sociaux aux citoyens européens. Renseigne-toi sur le site de la Fédération Wallonie-Bruxelles.",
+        "A noter, si vous êtes boursier sur critères sociaux, vous continuez de percevoir les versements de votre bourse."
+      ],
+      link: [
+
+      ]
+    }
+  ]
   panelOpenState: boolean = false
   panelOpenState1: boolean = false
 
@@ -20,6 +51,10 @@ export class InfoComponent implements OnInit {
 
   public goTo(info: any) {
     this.router.navigate(['infoType', info.goTo]);
+  }
+
+  goToWindow(link: string) {
+    window.open(link, "_blank")
   }
 
 }
