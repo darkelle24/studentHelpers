@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,11 +16,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CityComponent } from './city/city.component';
 import { CountryComponent } from './country/country.component';
 import { InfoTypeComponent } from './info-type/info-type.component';
 import { InfoComponent } from './info/info.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,22 +35,29 @@ import { InfoComponent } from './info/info.component';
     CityComponent,
     CountryComponent,
     InfoTypeComponent,
-    InfoComponent
+    InfoComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

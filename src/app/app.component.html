@@ -1,2 +1,11 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div class="background ">
+    <app-header class="header"></app-header>
+    <div class="aligner body" *ngIf="loginRegister">
+        <div class="aligner-item">
+            <router-outlet *ngIf="loginRegister"></router-outlet>
+        </div>
+    </div>
+    <div *ngIf="!loginRegister">
+        <router-outlet></router-outlet>
+    </div>
+</div>

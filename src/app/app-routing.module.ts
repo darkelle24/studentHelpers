@@ -4,8 +4,12 @@ import { CityComponent } from './city/city.component';
 import { CountryComponent } from './country/country.component';
 import { InfoTypeComponent } from './info-type/info-type.component';
 import { InfoComponent } from './info/info.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'country', component: CountryComponent },
   { path: ':country/city', component: CityComponent },
   { path: 'infoType', component: InfoTypeComponent },

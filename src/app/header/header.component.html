@@ -1,10 +1,29 @@
 <mat-toolbar>
-    <img class="icon" src="../../assets/cat.png" alt="" />
-    <span>Site</span>
+
+    <div class="home" (click)="goTo('/infoType')">
+        <img class="icon" src="../../assets/cat.png" alt="" />
+        <span>Site</span>
+    </div>
+
 
     <span class="example-spacer"></span>
 
-    <button mat-icon-button class="user">
-      <mat-icon class="mat-icon">account_circle</mat-icon>
-    </button>
+    <div class="info" [matMenuTriggerFor]="menu">
+        <span *ngIf="auth.currentUserValue" class="name">{{auth.currentUserValue.email}}</span>
+        <mat-icon class="mat-icon">account_circle</mat-icon>
+    </div>
+    <mat-menu #menu="matMenu">
+        <button *ngIf="!auth.currentUserValue" (click)="goTo('/register')" mat-menu-item>
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Register</span>
+      </button>
+        <button *ngIf="!auth.currentUserValue" (click)="goTo('/login')" mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
+        <button *ngIf="auth.currentUserValue" (click)="auth.logout()" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
 </mat-toolbar>
