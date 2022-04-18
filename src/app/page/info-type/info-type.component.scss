@@ -1,0 +1,63 @@
+.searchBar {
+    width: 100%;
+    margin-left: 1rem !important;
+}
+
+.page {
+    padding: 2.5rem !important;
+}
+
+.filter::ng-deep .mat-form-field-wrapper {
+    margin: 0px !important;
+    padding: 0px!important;
+}
+
+.filter::ng-deep .mat-form-field-infix {
+    border-top: 0px!important;
+    padding-top: calc(1em + 0.4em)!important;
+    padding-bottom: calc(1em + 0.15em)!important;
+}
+
+.filter::ng-deep .mat-form-field-prefix {
+    top: 0.35em;
+}
+
+.filter::ng-deep .mat-form-field-suffix {
+    top: 0.35em;
+}
+
+.filter::ng-deep .mat-select-arrow-wrapper {
+    transform: none!important;
+}
+
+.container {
+    max-width: 64rem !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.one-country {
+    width: 400px;
+    height: 150px;
+    padding-bottom: 0px;
+}
+
+.header-image {
+    background-size: cover;
+}
+
+.country-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 2.5rem !important;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}

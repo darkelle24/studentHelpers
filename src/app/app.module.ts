@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { JwtInterceptor } from './core/_helpers/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,24 +20,26 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSelectModule } from '@angular/material/select';
 
-import { CityComponent } from './city/city.component';
-import { CountryComponent } from './country/country.component';
-import { InfoTypeComponent } from './info-type/info-type.component';
-import { InfoComponent } from './info/info.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { InfoTypeComponent } from './page/info-type/info-type.component';
+import { InfoComponent } from './page/info/info.component';
+import { RegisterComponent } from './page/register/register.component';
+import { LoginComponent } from './page/login/login.component';
+import { LayoutComponent } from './layout/layout.component';
+import { VerticalComponent } from './layout/vertical/vertical.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CityComponent,
-    CountryComponent,
     InfoTypeComponent,
     InfoComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LayoutComponent,
+    VerticalComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,8 @@ import { LoginComponent } from './login/login.component';
     MatExpansionModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatSelectModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

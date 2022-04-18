@@ -1,7 +1,9 @@
 <div class="page">
     <h1 class="title">{{title}}</h1>
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let item of list" (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+    <h2 class="subtitle">Here are the most frequently asked questions you may check before getting started
+    </h2>
+    <mat-accordion class="accordion">
+        <mat-expansion-panel class="panel" *ngFor="let item of list" (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
             <mat-expansion-panel-header>
                 <mat-panel-title style="font-size: 20px;">
                     {{item.name}}
@@ -10,7 +12,7 @@
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="country-list">
-                <p *ngFor="let info of item.info">{{info}}</p>
+                <p class="info" *ngFor="let info of item.info">{{info}}</p>
                 <mat-expansion-panel *ngIf="item.links && item.links.length > 0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title>

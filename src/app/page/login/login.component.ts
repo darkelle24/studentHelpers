@@ -2,7 +2,7 @@ import { Component, isDevMode, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { AuthentificationService } from 'src/app/_services/authentification.service';
+import { AuthentificationService } from 'src/app/core/_services/authentification.service';
 
 @Component({
   selector: 'app-login',

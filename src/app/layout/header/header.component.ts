@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthentificationService } from '../_services/authentification.service';
+import { AuthentificationService } from '../../core/_services/authentification.service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,8 @@ import { AuthentificationService } from '../_services/authentification.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Output() closeMenu = new EventEmitter<void>();
 
   constructor(public auth: AuthentificationService, private router: Router) { }
 
@@ -18,8 +20,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([link]);
   }
 
-  test() {
-    console.log('work')
+  openCloseMenu() {
+    this.closeMenu.emit()
   }
 
 }

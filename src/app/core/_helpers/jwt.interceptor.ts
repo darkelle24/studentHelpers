@@ -7,7 +7,7 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { AuthentificationService } from '../_services/authentification.service';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
