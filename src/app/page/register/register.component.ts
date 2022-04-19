@@ -29,11 +29,27 @@ export class RegisterComponent implements OnInit {
     this.isLoading = true
     this.auth.register(this.email.value, this.password.value).subscribe({
       next: (value: any) => {
-        this.isLoading = false;
         if (isDevMode()) {
           console.log(value)
         }
-        this.goTo("/login")
+        this.auth.login(this.email.value, this.password.value).subscribe({
+          next: (loginValue: any) => {
+            if (isDevMode()) {
+              console.log(loginValue)
+            }
+            this.auth.infoMe().subscribe({
+              next: (value: any) => {
+                this.isLoading = false;
+                if (isDevMode()) {
+                  console.log(value)
+                }
+                this.goTo("/infoType")
+              },
+              error: (err: any) => this.isLoading = false
+            })
+          },
+          error: (err: any) => this.isLoading = false
+        })
       },
       error: (err: any) => this.isLoading = false
     })

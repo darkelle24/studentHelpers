@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           error: (err: any) => this.isLoading = false
         })
       },
-      error: (err: any) => this.isLoading = false
+      error: (err: any) => { this.isLoading = false; console.error(err) }
     })
   }
 

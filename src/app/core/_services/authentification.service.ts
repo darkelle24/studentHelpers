@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, flatMap, map, mergeMap, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,24 +14,26 @@ export class AuthentificationService {
   name = "epitech-web-security"
   nameToken = "epitech-web-security-token"
 
-  urlUser = `${environment.apiUrl}users`
+  urlUser = `${environment.apiUrl}`
 
-  constructor(private http: HttpClient, private router: Router, private error: ErrorService) {
+  constructor(private http: HttpClient, private router: Router) {
     // @ts-ignore
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem(this.name)));
     // @ts-ignore
     this.currentUserTokenSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem(this.nameToken)));
 
-    if (this.currentUserTokenValue) {
-      this.infoMe().subscribe({
-        next: (value: any) => {
-          if (isDevMode()) {
-            console.log(value)
-          }
-        },
-        error: (err: any) => { }
-      })
-    }
+    setTimeout(() => {
+      if (this.currentUserTokenValue) {
+        this.infoMe().subscribe({
+          next: (value: any) => {
+            if (isDevMode()) {
+              console.log(value)
+            }
+          },
+          error: (err: any) => { }
+        })
+      }
+    })
   }
 
   public get currentUserValue(): any {
@@ -52,7 +53,7 @@ export class AuthentificationService {
   }
 
   refreshToken(): Observable<any> {
-    return this.http.post<any>(this.urlUser + '/token/refresh', {}).pipe(
+    return this.http.post<any>(this.urlUser + 'token/refresh', {}).pipe(
       map((user: any) => {
         localStorage.setItem(this.nameToken, JSON.stringify(user));
         this.currentUserTokenSubject.next(user);
@@ -61,7 +62,7 @@ export class AuthentificationService {
   }
 
   infoMe(): Observable<any> {
-    return this.http.get<any>(this.urlUser + '/users').pipe(
+    return this.http.get<any>(this.urlUser + 'me').pipe(
       map((user: any) => {
         localStorage.setItem(this.name, JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -70,11 +71,11 @@ export class AuthentificationService {
   }
 
   register(email: string, password: string): Observable<any> {
-    return this.http.post<any>(this.urlUser + '/users', { email, password, roles: ["Users"] })
+    return this.http.post<any>(this.urlUser + 'users', { email, password })
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(this.urlUser + '/login', { email: email, password: password })
+    return this.http.post<any>(environment.apiUrl + 'login', { email: email, password: password })
       .pipe(
         map((user: any) => {
           localStorage.setItem(this.nameToken, JSON.stringify(user));
@@ -89,8 +90,8 @@ export class AuthentificationService {
     // @ts-ignore
     this.currentUserTokenSubject.next(null);
     this.currentUserSubject.next(null)
-    if (navig)
-      this.router.navigate(['login']);
+    /*     if (navig)
+          this.router.navigate(['login']); */
   }
 
   modifyUsername(username: string): Observable<any> {

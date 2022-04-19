@@ -16,20 +16,22 @@ import { ErrorService } from '../_services/error.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthentificationService, private router: Router, private error: ErrorService) { }
+  constructor(public authenticationService: AuthentificationService, private router: Router, private error: ErrorService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const url = this.router.url
-
+    const url = request.url
     request = this.addTokenHeader(request)
 
     return next.handle(request).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse) {
-          if (url !== '/users/login' && error.status === 401) {
-            this.handle401Error(request, next);
+          if (!url.includes('login') && error.status === 401) {
+            let toReturn = this.handle401Error(request, next);
+            if (toReturn)
+              return toReturn
+            return throwError(() => error);
           } else {
-            this.error.showError("Error " + error.status + ": " + error.error.error)
+            this.error.showError("Error " + error.status + ": " + error.error.detail)
             if (isDevMode()) {
               console.error(error)
             }
@@ -41,7 +43,7 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-    if (this.authenticationService.currentUserValue.refresh_token)
+    if (this.authenticationService.currentUserTokenValue.refresh_token)
       return this.authenticationService.refreshToken().pipe(
         switchMap((token: any) => {
           return next.handle(this.addTokenHeader(request)).pipe(
