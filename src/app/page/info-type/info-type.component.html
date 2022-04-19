@@ -2,34 +2,43 @@
     <div class="container">
         <div class="filter-container">
             <mat-form-field class="select filter" appearance="outline">
-                <mat-select>
-                    <mat-option value="volvo">Volvo</mat-option>
-                    <mat-option value="saab">Saab</mat-option>
-                    <mat-option value="mercedes">Mercedes</mat-option>
-                    <mat-option value="audi">Audi</mat-option>
+                <mat-select [(ngModel)]="selectedType" (selectionChange)="filter()">
+                    <mat-option value="Tous">Tous</mat-option>
+                    <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="searchBar filter" appearance="outline">
                 <mat-icon matPrefix>search</mat-icon>
-                <input placeholder="Chercher" matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input autocomplete="off" (input)="filter()" placeholder="Chercher" matInput type="text" [(ngModel)]="searchBarValue">
+                <button *ngIf="searchBarValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchBarValue=undefined; filter()">
               <mat-icon>close</mat-icon>
             </button>
             </mat-form-field>
         </div>
 
         <div class="country-list">
-            <mat-card *ngFor="let item of list" class="one-country clickable mat-elevation-z4" (click)="goTo(item)">
-                <mat-card-header class="title">
-                    <div mat-card-avatar class="header-image" [style.background-image]="'url(' + item.image + ')'"></div>
-                    <mat-card-title>{{item.title}}</mat-card-title>
-                    <mat-card-subtitle>{{item.subtitle}}</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>
-                        {{item.content}}
-                    </p>
-                </mat-card-content>
+
+            <mat-card *ngFor="let item of filteredList" class="info-type">
+                <div style="padding: 1.5rem !important">
+                    <div class="type" [ngStyle]="{'background-color': item.typeColor}">
+                        {{item.type}}
+                    </div>
+                    <div class="content">
+                        <h3 class="title">{{item.title}}</h3>
+                        <p class="desc">{{item.content}}</p>
+                    </div>
+                </div>
+                <div>
+                    <mat-progress-bar mode="buffer"></mat-progress-bar>
+                    <div class="action">
+                        <button mat-stroked-button class="continue" (click)="goTo(item)">
+                          <div style="display: flex; gap: 0.4rem; flex-direction: row; align-items: center; justify-content: space-between;">
+                            Continue <mat-icon>trending_flat</mat-icon>
+                          </div>
+                        </button>
+                    </div>
+                </div>
+
             </mat-card>
         </div>
     </div>

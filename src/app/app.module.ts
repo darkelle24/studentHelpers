@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { InfoTypeComponent } from './page/info-type/info-type.component';
 import { InfoComponent } from './page/info/info.component';
@@ -59,7 +60,8 @@ import { VerticalComponent } from './layout/vertical/vertical.component';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressBarModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
