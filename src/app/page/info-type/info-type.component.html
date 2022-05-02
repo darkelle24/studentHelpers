@@ -16,7 +16,11 @@
             </mat-form-field>
         </div>
 
-        <div class="country-list">
+        <div class="loading" *ngIf="isLoading">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="country-list" *ngIf="!isLoading">
 
             <mat-card *ngFor="let item of filteredList" class="info-type">
                 <div style="padding: 1.5rem !important">

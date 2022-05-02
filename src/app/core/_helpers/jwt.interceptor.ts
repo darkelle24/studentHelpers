@@ -31,7 +31,11 @@ export class JwtInterceptor implements HttpInterceptor {
               return toReturn
             return throwError(() => error);
           } else {
-            this.error.showError("Error " + error.status + ": " + error.error.detail)
+            if (error.error.detail)
+              this.error.showError("Error " + error.status + ": " + error.error.detail)
+            else {
+              this.error.showError("Error " + error.status + ": " + error.error.message)
+            }
             if (isDevMode()) {
               console.error(error)
             }

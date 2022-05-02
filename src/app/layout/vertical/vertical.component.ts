@@ -1,16 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { TopicsService } from 'src/app/core/_services/topics.service';
 
 @Component({
   selector: 'app-vertical',
   templateUrl: './vertical.component.html',
   styleUrls: ['./vertical.component.scss']
 })
-export class VerticalComponent implements OnInit {
+export class VerticalComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router) { }
+  list: any[] = []
+
+  sub: Subscription
+
+  constructor(private router: Router, private topicsService: TopicsService) {
+    this.sub = this.topicsService.currentTopicsSubject.subscribe({
+      next: (values: any[]) => {
+        if (values) {
+          this.list = values.map((value: any) => {
+            if (value.name === "Logement") {
+              value.icon = 'house'
+            } else if (value.name === "Finance") {
+              value.icon = 'attach_money'
+            } else {
+              value.icon = 'house'
+            }
+            return value
+          })
+        }
+      }
+    })
+  }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe()
   }
 
   goTo(link: string) {

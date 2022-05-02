@@ -2,22 +2,10 @@
     <div class="title" (click)="goTo('/infoType')">
         <img class="icon" src="../../assets/cat.png" alt="" />Pywol
     </div>
-    <a class="select-nav" href="/infoType" routerLink="/infoType" routerLinkActive="selected">
-        <mat-icon role="img" class="icon-nav">settings</mat-icon>
+    <a *ngFor="let item of list" class="select-nav" [href]="'/infoType/' + item.name + '/' + item.id" [routerLink]="'/infoType/' + item.name + '/' + item.id" routerLinkActive="selected">
+        <mat-icon role="img" class="icon-nav">{{item.icon}}</mat-icon>
         <div class="name">
-            <div class=""><span> Project </span></div>
-        </div>
-    </a>
-    <a class="select-nav" href="/infoTypes" routerLink="/infoTypes" routerLinkActive="selected">
-        <mat-icon role="img" class="icon-nav">settings</mat-icon>
-        <div class="name">
-            <div class=""><span> Project </span></div>
-        </div>
-    </a>
-    <a class="select-nav" href="/infoTypesd" routerLink="/infoTypesd" routerLinkActive="selected">
-        <mat-icon role="img" class="icon-nav">settings</mat-icon>
-        <div class="name">
-            <div class=""><span> Project </span></div>
+            <div class=""><span> {{item.name}} </span></div>
         </div>
     </a>
     <div style="margin-top: 1.5rem"></div>

@@ -11,8 +11,8 @@ export class AuthentificationService {
   private currentUserSubject: BehaviorSubject<any>;
   private currentUserTokenSubject: BehaviorSubject<any>;
 
-  name = "epitech-web-security"
-  nameToken = "epitech-web-security-token"
+  name = "epitech-capstone"
+  nameToken = "epitech-capstone-token"
 
   urlUser = `${environment.apiUrl}`
 

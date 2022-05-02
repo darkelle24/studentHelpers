@@ -1,8 +1,13 @@
 <div class="page">
     <h1 class="title">{{title}}</h1>
-    <h2 class="subtitle">Here are the most frequently asked questions you may check before getting started
-    </h2>
-    <mat-accordion class="accordion">
+    <!-- <h2 class="subtitle">Here are the most frequently asked questions you may check before getting started
+    </h2> -->
+
+    <div class="loading" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <mat-accordion class="accordion" *ngIf="!isLoading">
         <mat-expansion-panel class="panel" *ngFor="let item of list" (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
             <mat-expansion-panel-header>
                 <mat-panel-title style="font-size: 20px;">

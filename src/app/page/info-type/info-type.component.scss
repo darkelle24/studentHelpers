@@ -54,6 +54,14 @@
     margin-top: 2.5rem !important;
 }
 
+.loading {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2.5rem !important;
+    justify-content: center;
+}
+
 .filter-container {
     display: flex;
     flex-direction: row;

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { InfoTypeInterface } from 'src/app/core/_models/infoTypeInterface';
+import { ApiService } from 'src/app/core/_services/api.service';
 
 @Component({
   selector: 'app-info-type',
@@ -9,12 +11,6 @@ import { Router } from '@angular/router';
 export class InfoTypeComponent implements OnInit {
 
   list: any[] = [
-    { goTo: "Money", image: '../../assets/png-clipart-dollar-dollar.png', title: "Financement", typeColor: "rgba(59, 130, 246, 1)", type: "Finance", content: "Rubrique contenant tous les infos par rapport aux financements." },
-    { goTo: "Housing", image: 'http://assets.stickpng.com/images/588a6686d06f6719692a2d1a.png', typeColor: "rgba(34, 197, 94, 1)", type: "Logement", title: "Logement", content: "Rubrique contenant tous les infos par rapport aux logement et cout de la vie." },
-    { goTo: "Housing", image: 'http://assets.stickpng.com/images/588a6686d06f6719692a2d1a.png', typeColor: "rgba(34, 197, 94, 1)", type: "Logement", title: "Logement", content: "Rubrique contenant tous les infos par rapport aux logement et cout de la vie." },
-    { goTo: "Housing", image: 'http://assets.stickpng.com/images/588a6686d06f6719692a2d1a.png', typeColor: "rgba(34, 197, 94, 1)", type: "Logement", title: "Logement", content: "Rubrique contenant tous les infos par rapport aux logement et cout de la vie." },
-    { goTo: "Housing", image: 'http://assets.stickpng.com/images/588a6686d06f6719692a2d1a.png', typeColor: "rgba(34, 197, 94, 1)", type: "Logement", title: "Logement", content: "Rubrique contenant tous les infos par rapport aux logement et cout de la vie." },
-    { goTo: "Housing", image: 'http://assets.stickpng.com/images/588a6686d06f6719692a2d1a.png', typeColor: "rgba(34, 197, 94, 1)", type: "Logement", title: "Logement", content: "Rubrique contenant tous les infos par rapport aux logement et cout de la vie." },
   ]
 
   filteredList: any[] = []
@@ -25,15 +21,57 @@ export class InfoTypeComponent implements OnInit {
 
   types: string[] = []
 
-  constructor(private router: Router) { }
+  isLoading: boolean = true
+
+  constructor(private router: Router, private api: ApiService) { }
 
   ngOnInit(): void {
-    this.getAllType()
-    this.filteredList = this.list
+    this.getAllInfos()
   }
 
   public goTo(info: any) {
-    this.router.navigate(['infoType', info.goTo]);
+    this.router.navigate(['infoType', info.goTo, info.idType]);
+  }
+
+  getAllInfos() {
+    this.api.getInfos().subscribe({
+      next: (values: any[]) => {
+        let toShow: any[] = []
+
+        if (isDevMode()) {
+          console.log(values)
+        }
+
+        values.forEach((value: any) => {
+          let toReturn: InfoTypeInterface = {
+            goTo: value.topic.name,
+            image: "",
+            priority: value.priority,
+            type: value.topic.name,
+            title: value.title,
+            content: "",
+            typeColor: value.topic.color,
+            idType: value.topic.id
+          }
+
+          toShow.push(toReturn)
+        })
+
+        this.list = toShow
+
+        if (isDevMode()) {
+          console.log(toShow)
+        }
+
+        this.getAllType()
+        this.filter()
+
+        this.isLoading = false
+      },
+      error: (err: any) => {
+        this.isLoading = false
+      }
+    })
   }
 
   getAllType(): void {

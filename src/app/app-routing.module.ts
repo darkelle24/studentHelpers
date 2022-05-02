@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'infoType', component: InfoTypeComponent },
-  { path: 'infoType/:info', component: InfoComponent },
+  { path: 'infoType/:info/:info_id', component: InfoComponent },
 
   { path: '', redirectTo: 'infoType', pathMatch: 'full' },
   { path: '**', redirectTo: 'infoType', pathMatch: 'full' }

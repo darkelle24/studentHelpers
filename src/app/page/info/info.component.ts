@@ -1,37 +1,95 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { InfoInterface } from 'src/app/core/_models/infoInterface';
+import { ApiService } from 'src/app/core/_services/api.service';
 
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss']
 })
-export class InfoComponent implements OnInit {
+export class InfoComponent implements OnInit, OnDestroy {
 
   title: string = ''
   list: any[] = []
   panelOpenState: boolean = false
   panelOpenState1: boolean = false
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    const type = this.route.snapshot.paramMap.get('info')
+  subscribe: Subscription
+  getInfos: Subscription | undefined
 
-    if (type === 'Money') {
-      this.title = 'Financement'
-      this.list = Money
-    } else if (type === 'Housing') {
-      this.title = 'Logement'
-      this.list = Housing
-    } else {
-      this.router.navigate(['/infoType'])
+  isLoading: boolean = true
+
+  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) {
+    this.subscribe = this.route.params.subscribe({
+      next: (info: any) => {
+        this.title = info.info
+
+        this.getInfo(info.info_id)
+        /* if (info.info === 'Money') {
+          this.title = 'Financement'
+          this.list = Money
+        } else if (info.info === 'Housing') {
+          this.title = 'Logement'
+          this.list = Housing
+        } else {
+          this.router.navigate(['/infoType'])
+        } */
+      }
+    })
+  }
+
+  getInfo(title: number) {
+    if (this.getInfos) {
+      this.getInfos.unsubscribe()
+      this.getInfos = undefined
+    }
+
+    this.isLoading = true
+
+    this.getInfos = this.api.getInfos(title).subscribe({
+      next: (values: any[]) => {
+        let toShow: any[] = []
+
+        if (isDevMode()) {
+          console.log(values)
+        }
+
+        values.forEach((value: any) => {
+          let toReturn: InfoInterface = {
+            name: value.title,
+            info: value.content.split('\n'),
+          }
+
+          toShow.push(toReturn)
+        })
+
+        if (isDevMode()) {
+          console.log(toShow)
+        }
+
+        this.list = toShow
+        if (values.length > 0) {
+          this.title = values[0].topic.name
+        }
+
+        this.isLoading = false
+      },
+      error: (error: any) => {
+        this.isLoading = false
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subscribe.unsubscribe()
+    if (this.getInfos) {
+      this.getInfos.unsubscribe()
     }
   }
 
   ngOnInit(): void {
-  }
-
-  public goTo(info: any) {
-    this.router.navigate(['infoType', info.goTo]);
   }
 
   goToWindow(link: string) {
@@ -40,7 +98,7 @@ export class InfoComponent implements OnInit {
 
 }
 
-const Housing: any[] = [
+/* const Housing: any[] = [
   {
     name: "Logement",
     info: [
@@ -88,4 +146,4 @@ const Money: any[] = [
       "Pour travailler en Belgique, les étudiants français n’ont pas besoin d’accomplir une démarche particulière. Depuis janvier 2017, il est conseillé cependant de ne pas dépasser un contingent de 475 heures par année civile. Au-delà vous devrez payer des cotisations sociales comme tout salarié. Sous ce volume horaire, vous paierez uniquement une cotisation de solidarité (2 % maximum).",
     ],
   }
-]
+] */

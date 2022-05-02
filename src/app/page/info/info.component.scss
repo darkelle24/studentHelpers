@@ -56,3 +56,11 @@
     line-height: 1.7;
     color: rgba(100, 116, 139, 1) !important;
 }
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 3rem !important;
+}
