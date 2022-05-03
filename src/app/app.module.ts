@@ -38,6 +38,8 @@ import { ShareComponent } from './page/share/share.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { AngularFireAnalyticsModule, CONFIG } from '@angular/fire/compat/analytics';
+import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,10 @@ import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingServ
     ShareComponent
   ],
   imports: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAnalytics(() => getAnalytics()),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -74,10 +80,18 @@ import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingServ
     ShareButtonsModule,
     ShareIconsModule,
     MatDialogModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAnalytics(() => getAnalytics())
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, ScreenTrackingService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: CONFIG, useValue: {
+        send_page_view: true,
+        allow_ad_personalization_signals: false,
+        anonymize_ip: true
+      }
+    },
+    ScreenTrackingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
