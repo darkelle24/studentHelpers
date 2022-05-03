@@ -3,6 +3,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, flatMap, map, mergeMap, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthentificationService {
 
   urlUser = `${environment.apiUrl}`
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, public analytics: AngularFireAnalytics) {
     // @ts-ignore
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem(this.name)));
     // @ts-ignore
@@ -80,6 +81,7 @@ export class AuthentificationService {
         map((user: any) => {
           localStorage.setItem(this.nameToken, JSON.stringify(user));
           this.currentUserTokenSubject.next(user);
+          this.analytics.setUserId(user.id)
           return user;
         }));
   }

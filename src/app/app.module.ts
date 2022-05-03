@@ -35,6 +35,9 @@ import { LoginComponent } from './page/login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { VerticalComponent } from './layout/vertical/vertical.component';
 import { ShareComponent } from './page/share/share.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 
 @NgModule({
   declarations: [
@@ -70,9 +73,11 @@ import { ShareComponent } from './page/share/share.component';
     MatProgressBarModule,
     ShareButtonsModule,
     ShareIconsModule,
-    MatDialogModule
+    MatDialogModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAnalytics(() => getAnalytics())
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, ScreenTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
