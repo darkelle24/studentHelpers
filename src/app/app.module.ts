@@ -83,7 +83,7 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       provide: CONFIG, useValue: {
-        debug_mode: isDevMode() ? true : false
+        debug_mode: false
       }
     },
     ScreenTrackingService
