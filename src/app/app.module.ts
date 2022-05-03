@@ -23,6 +23,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 import { InfoTypeComponent } from './page/info-type/info-type.component';
 import { InfoComponent } from './page/info/info.component';
@@ -30,6 +34,7 @@ import { RegisterComponent } from './page/register/register.component';
 import { LoginComponent } from './page/login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { VerticalComponent } from './layout/vertical/vertical.component';
+import { ShareComponent } from './page/share/share.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,8 @@ import { VerticalComponent } from './layout/vertical/vertical.component';
     RegisterComponent,
     LoginComponent,
     LayoutComponent,
-    VerticalComponent
+    VerticalComponent,
+    ShareComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,10 @@ import { VerticalComponent } from './layout/vertical/vertical.component';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatSelectModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ShareButtonsModule,
+    ShareIconsModule,
+    MatDialogModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

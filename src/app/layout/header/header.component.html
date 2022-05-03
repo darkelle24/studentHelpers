@@ -6,6 +6,10 @@
 
 
     <span class="example-spacer"></span>
+    <button style="margin-right: 15px;" (click)="openDialog()" mat-stroked-button aria-label="Example icon button with a heart icon">
+      <mat-icon color="warn">favorite</mat-icon>
+      Partage si tu as aimé
+    </button>
 
     <div class="info" [matMenuTriggerFor]="menu">
         <span *ngIf="auth.currentUserValue" class="name">{{auth.currentUserValue.email}}</span>
