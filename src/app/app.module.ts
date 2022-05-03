@@ -90,6 +90,7 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
         anonymize_ip: true
       }
     },
+    UserTrackingService,
     ScreenTrackingService
   ],
   bootstrap: [AppComponent]
