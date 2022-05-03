@@ -16,11 +16,12 @@ export class AppComponent {
 
   constructor(public topics: TopicsService, analytics: AngularFireAnalytics) {
     this.topics.actualizeTopics()
-    if (!isDevMode())
+    analytics.setAnalyticsCollectionEnabled(true)
+    /* if (!isDevMode())
       analytics.setAnalyticsCollectionEnabled(true)
     else {
       analytics.setAnalyticsCollectionEnabled(false)
-    }
+    } */
   }
 
 }

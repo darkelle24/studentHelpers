@@ -54,8 +54,6 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
     ShareComponent
   ],
   imports: [
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAnalytics(() => getAnalytics()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
     BrowserModule,
