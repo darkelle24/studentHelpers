@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -83,9 +83,7 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       provide: CONFIG, useValue: {
-        send_page_view: true,
-        allow_ad_personalization_signals: false,
-        anonymize_ip: true
+        debug_mode: isDevMode() ? true : false
       }
     },
     ScreenTrackingService

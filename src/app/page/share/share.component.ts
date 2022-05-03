@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-share',
@@ -7,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShareComponent implements OnInit {
 
-  constructor() { }
+  constructor(public analytics: AngularFireAnalytics) { }
 
   ngOnInit(): void {
   }
 
   getUrl(): string {
     return window.location.href
+  }
+
+  opened(social: any) {
+    this.analytics.logEvent('share', {
+      method: social
+    });
   }
 
 }

@@ -82,6 +82,7 @@ export class AuthentificationService {
           localStorage.setItem(this.nameToken, JSON.stringify(user));
           this.currentUserTokenSubject.next(user);
           this.analytics.setUserId(user.id)
+          this.analytics.logEvent("login", { method: "Email", userId: user.id })
           return user;
         }));
   }

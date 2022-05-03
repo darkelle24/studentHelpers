@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Partage</h2>
 <mat-dialog-content class="mat-typography">
 
-    <share-buttons [url]="getUrl()" [title]="'Partage'" [description]="'Partage avec tes copains si tu as aimé'" [tags]="'jeune,dynamique,moderne,swag'" [show]="6" [showText]="true"></share-buttons>
+    <share-buttons (opened)="opened($event)" [url]="getUrl()" [title]="'Partage'" [description]="'Partage avec tes copains si tu as aimé'" [tags]="'jeune,dynamique,moderne,swag'" [show]="6" [showText]="true"></share-buttons>
 
 </mat-dialog-content>

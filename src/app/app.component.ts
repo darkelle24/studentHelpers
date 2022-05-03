@@ -17,6 +17,7 @@ export class AppComponent {
   constructor(public topics: TopicsService, analytics: AngularFireAnalytics) {
     this.topics.actualizeTopics()
     analytics.setAnalyticsCollectionEnabled(true)
+    analytics.logEvent('user_load_web_site');
     /* if (!isDevMode())
       analytics.setAnalyticsCollectionEnabled(true)
     else {
