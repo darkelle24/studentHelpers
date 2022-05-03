@@ -30,7 +30,8 @@ export class InfoTypeComponent implements OnInit {
   }
 
   public goTo(info: any) {
-    this.router.navigate(['infoType', info.goTo, info.idType]);
+    console.log(info)
+    this.router.navigate(['infoType', info.goTo, info.idType], { queryParams: { goTo: info.title }, queryParamsHandling: null });
   }
 
   getAllInfos() {

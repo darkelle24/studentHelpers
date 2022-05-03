@@ -8,7 +8,7 @@
     </div>
 
     <mat-accordion class="accordion" *ngIf="!isLoading">
-        <mat-expansion-panel class="panel" *ngFor="let item of list" (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+        <mat-expansion-panel class="panel" *ngFor="let item of list" [expanded]="item.name == goTo" (opened)="panelOpenState1 = true; setQuerry(item.name)" (closed)="panelOpenState1 = false">
             <mat-expansion-panel-header>
                 <mat-panel-title style="font-size: 20px;">
                     {{item.name}}

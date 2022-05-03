@@ -17,11 +17,24 @@ export class InfoComponent implements OnInit, OnDestroy {
   panelOpenState1: boolean = false
 
   subscribe: Subscription
+  subscribeQuerry: Subscription
   getInfos: Subscription | undefined
+
+  goTo?: string
 
   isLoading: boolean = true
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) {
+    this.subscribeQuerry = this.route.queryParams.subscribe({
+      next: (info: any) => {
+        if (info.goTo) {
+          this.goTo = info.goTo
+        } else {
+          this.goTo = undefined
+        }
+      }
+    })
+
     this.subscribe = this.route.params.subscribe({
       next: (info: any) => {
         this.title = info.info
@@ -38,6 +51,16 @@ export class InfoComponent implements OnInit, OnDestroy {
         } */
       }
     })
+  }
+
+  setQuerry(name: string) {
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: { goTo: name },
+        queryParamsHandling: 'merge'
+      });
   }
 
   getInfo(title: number) {
@@ -74,6 +97,12 @@ export class InfoComponent implements OnInit, OnDestroy {
           this.title = values[0].topic.name
         }
 
+        if (this.list.length > 0) {
+          if (!this.goTo || !this.list.find((toTest: any) => toTest.name === this.goTo)) {
+            this.setQuerry(this.list[0].name)
+          }
+        }
+
         this.isLoading = false
       },
       error: (error: any) => {
@@ -84,6 +113,7 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscribe.unsubscribe()
+    this.subscribeQuerry.unsubscribe()
     if (this.getInfos) {
       this.getInfos.unsubscribe()
     }
