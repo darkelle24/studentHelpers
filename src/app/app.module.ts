@@ -5,6 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtInterceptor } from './core/_helpers/jwt.interceptor';
 
+import { environment } from '../environments/environment';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +30,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { AngularFireAnalyticsModule, CONFIG } from '@angular/fire/compat/analytics';
+import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
+
 import { InfoTypeComponent } from './page/info-type/info-type.component';
 import { InfoComponent } from './page/info/info.component';
 import { RegisterComponent } from './page/register/register.component';
@@ -35,11 +42,8 @@ import { LoginComponent } from './page/login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { VerticalComponent } from './layout/vertical/vertical.component';
 import { ShareComponent } from './page/share/share.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { AngularFireAnalyticsModule, CONFIG } from '@angular/fire/compat/analytics';
-import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { BarComponent } from './layout/vertical/gallerie-bar/bar/bar.component';
+import { GallerieBarComponent } from './layout/vertical/gallerie-bar/gallerie-bar.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,9 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
     LoginComponent,
     LayoutComponent,
     VerticalComponent,
-    ShareComponent
+    ShareComponent,
+    BarComponent,
+    GallerieBarComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
