@@ -1,1 +1,10 @@
-<p>gallerie-bar works!</p>
+<div class="mainContainer">
+
+    <ng-container *ngFor="let item of listBar; let index = index">
+        <app-bar (mouseenter)="destroyTimer()" (mouseleave)="countdown()" *ngIf="index === selected" [bar]="item"></app-bar>
+    </ng-container>
+
+    <button class="btnChange btnPrev" mat-mini-fab color="primary" (click)="prev()"><mat-icon>navigate_before</mat-icon></button>
+    <button class="btnChange btnNext" mat-mini-fab color="primary" (click)="next()"><mat-icon>navigate_next</mat-icon></button>
+
+</div>

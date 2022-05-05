@@ -1,7 +1,10 @@
 <div class="nav">
+
     <div class="title" (click)="goTo('/infoType')">
         <img class="icon" src="../../assets/cat.png" alt="" />Pywol
     </div>
+
+    <span class="classTitle">Navigation</span>
     <a *ngFor="let item of list" class="select-nav" [href]="'/infoType/' + item.name + '/' + item.id" [routerLink]="'/infoType/' + item.name + '/' + item.id" routerLinkActive="selected">
         <mat-icon role="img" class="icon-nav">{{item.icon}}</mat-icon>
         <div class="name">
@@ -9,6 +12,7 @@
         </div>
     </a>
     <span class="example-spacer"></span>
-    <app-bar></app-bar>
+    <span class="classTitle">Partenaire</span>
+    <app-gallerie-bar></app-gallerie-bar>
     <!-- <div style="margin-top: 1.5rem"></div> -->
 </div>

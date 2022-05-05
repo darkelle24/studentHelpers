@@ -9,7 +9,7 @@
     align-items: center;
     flex-direction: row;
     cursor: pointer;
-    margin-bottom: 24px;
+    margin-bottom: 0px;
 }
 
 .example-spacer {
@@ -66,4 +66,13 @@
     width: 24px;
     height: 24px;
     margin-right: 16px;
+}
+
+.classTitle {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(129, 140, 248);
+    padding: 10px 16px;
 }

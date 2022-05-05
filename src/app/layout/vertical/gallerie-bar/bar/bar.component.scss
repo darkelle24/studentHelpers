@@ -1,9 +1,10 @@
 .barCard {
     height: 400px;
-    width: calc(100% - 16px - 16px) !important;
+    width: 251.6px !important;
     display: flex !important;
     flex-direction: column;
     margin: 16px;
+    margin-top: 0px;
     border-radius: 1rem;
     background-color: rgb(30, 41, 59);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;

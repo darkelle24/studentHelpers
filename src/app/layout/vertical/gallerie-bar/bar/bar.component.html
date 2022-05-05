@@ -1,17 +1,17 @@
 <div class="barCard">
 
-    <img class="barImage" src="../../../../../assets/bar.jpg" alt="">
+    <img class="barImage" [src]="bar.image" alt="">
 
     <div class="barContenu">
-        <div class="barTitle">Bruxelle Bar</div>
+        <div class="barTitle">{{bar.title}}</div>
         <div class="container">
             <div class="barText">
-                Puzzles coffee shop is one of the finest coffee shops in central downtown in New York. It's quiet; far away from busy streets and never ending constructions.
+                {{bar.description}}
             </div>
         </div>
         <div class="barBtnContainer">
-            <a target="_blank" href="https://www.google.com/maps?q=Bar+du+Gaspi&rlz=1C1CHBF_frFR935FR935&um=1&ie=UTF-8&sa=X&ved=2ahUKEwiwmfinnMf3AhWFPOwKHWyZB60Q_AUoAXoECAIQAw" mat-button class="barBtn">Emplacement</a>
-            <a target="_blank" href="https://www.bardugaspi.com/" mat-button class="barBtn">Site web</a>
+            <a target="_blank" [href]="bar.position" mat-button class="barBtn">Emplacement</a>
+            <a target="_blank" *ngIf="bar.siteWeb" [href]="bar.siteWeb" mat-button class="barBtn">Site web</a>
         </div>
     </div>
 </div>
