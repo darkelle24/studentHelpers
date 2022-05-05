@@ -1,4 +1,5 @@
 import { Component, isDevMode, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { InfoInterface } from 'src/app/core/_models/infoInterface';
@@ -24,7 +25,7 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService) {
+  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private titleService: Title) {
     this.subscribeQuerry = this.route.queryParams.subscribe({
       next: (info: any) => {
         if (info.goTo) {
@@ -38,6 +39,8 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.subscribe = this.route.params.subscribe({
       next: (info: any) => {
         this.title = info.info
+
+        this.titleService.setTitle(info.info + ' | Pywol')
 
         this.getInfo(info.info_id)
         /* if (info.info === 'Money') {

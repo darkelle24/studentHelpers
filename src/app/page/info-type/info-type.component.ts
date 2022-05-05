@@ -1,4 +1,5 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { InfoTypeInterface } from 'src/app/core/_models/infoTypeInterface';
 import { ApiService } from 'src/app/core/_services/api.service';
@@ -23,10 +24,11 @@ export class InfoTypeComponent implements OnInit {
 
   isLoading: boolean = true
 
-  constructor(private router: Router, private api: ApiService) { }
+  constructor(private router: Router, private api: ApiService, private titleService: Title) { }
 
   ngOnInit(): void {
     this.getAllInfos()
+    this.titleService.setTitle('Pywol')
   }
 
   public goTo(info: any) {

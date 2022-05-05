@@ -1,6 +1,7 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/core/_services/authentification.service';
 
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   hide = true;
 
-  constructor(public auth: AuthentificationService, private router: Router) { }
+  constructor(public auth: AuthentificationService, private router: Router, private titleService: Title) { }
 
   password = new FormControl(undefined, [Validators.required]);
   email = new FormControl(undefined, [Validators.required, Validators.email]);
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
+    this.titleService.setTitle('Register | Pywol')
   }
 
   register() {
