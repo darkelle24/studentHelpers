@@ -1,4 +1,5 @@
 import { Component, isDevMode, OnDestroy, OnInit } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -25,7 +26,7 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = true
 
-  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private titleService: Title) {
+  constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private titleService: Title, private analytics: AngularFireAnalytics) {
     this.subscribeQuerry = this.route.queryParams.subscribe({
       next: (info: any) => {
         if (info.goTo) {
@@ -38,6 +39,7 @@ export class InfoComponent implements OnInit, OnDestroy {
 
     this.subscribe = this.route.params.subscribe({
       next: (info: any) => {
+        this.analytics.setCurrentScreen(info.info)
         this.title = info.info
 
         this.titleService.setTitle(info.info + ' | Pywol')

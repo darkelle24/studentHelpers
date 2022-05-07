@@ -1,4 +1,5 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { InfoTypeInterface } from 'src/app/core/_models/infoTypeInterface';
@@ -24,9 +25,10 @@ export class InfoTypeComponent implements OnInit {
 
   isLoading: boolean = true
 
-  constructor(private router: Router, private api: ApiService, private titleService: Title) { }
+  constructor(private router: Router, private api: ApiService, private titleService: Title, private analytics: AngularFireAnalytics) { }
 
   ngOnInit(): void {
+    this.analytics.setCurrentScreen('Info')
     this.getAllInfos()
     this.titleService.setTitle('Pywol')
   }

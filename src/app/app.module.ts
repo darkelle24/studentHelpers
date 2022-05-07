@@ -91,8 +91,7 @@ import { GallerieBarComponent } from './layout/vertical/gallerie-bar/gallerie-ba
       provide: CONFIG, useValue: {
         debug_mode: false
       }
-    },
-    ScreenTrackingService
+    }
   ],
   bootstrap: [AppComponent]
 })

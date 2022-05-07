@@ -1,4 +1,5 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Title } from '@angular/platform-browser';
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
   hide = true;
 
-  constructor(public auth: AuthentificationService, private router: Router, private titleService: Title) { }
+  constructor(public auth: AuthentificationService, private router: Router, private titleService: Title, private analytics: AngularFireAnalytics) { }
 
   password = new FormControl(undefined, [Validators.required]);
   email = new FormControl(undefined, [Validators.required, Validators.email]);
@@ -24,6 +25,7 @@ export class RegisterComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
+    this.analytics.setCurrentScreen('Register')
     this.titleService.setTitle('Register | Pywol')
   }
 

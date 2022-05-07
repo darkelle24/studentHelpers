@@ -11,6 +11,7 @@ export class ShareComponent implements OnInit {
   constructor(public analytics: AngularFireAnalytics) { }
 
   ngOnInit(): void {
+    this.analytics.setCurrentScreen('Share')
   }
 
   getUrl(): string {

@@ -1,4 +1,5 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Title } from '@angular/platform-browser';
@@ -21,9 +22,10 @@ export class LoginComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(public auth: AuthentificationService, private router: Router, private titleService: Title) { }
+  constructor(public auth: AuthentificationService, private router: Router, private titleService: Title, private analytics: AngularFireAnalytics) { }
 
   ngOnInit(): void {
+    this.analytics.setCurrentScreen('LogIn')
     this.titleService.setTitle('Login | Pywol')
   }
 
