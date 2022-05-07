@@ -1,9 +1,10 @@
-<div class="mainContainer">
+<div class="mainContainer" (mouseenter)="destroyTimer()" (mouseleave)="countdown()">
 
-    <ng-container *ngFor="let item of listBar; let index = index">
-        <app-bar (mouseenter)="destroyTimer()" (mouseleave)="countdown()" *ngIf="index === selected" [bar]="item"></app-bar>
-    </ng-container>
-
+    <div style="display: flex;">
+        <app-bar [@first]="sense" [bar]="first"></app-bar>
+        <app-bar [@second]="sense" (@second.done)="onAnimationEventDone($event)" [bar]="second"></app-bar>
+        <app-bar [@third]="sense" [bar]="third"></app-bar>
+    </div>
     <button class="btnChange btnPrev" mat-mini-fab color="primary" (click)="prev()"><mat-icon>navigate_before</mat-icon></button>
     <button class="btnChange btnNext" mat-mini-fab color="primary" (click)="next()"><mat-icon>navigate_next</mat-icon></button>
 

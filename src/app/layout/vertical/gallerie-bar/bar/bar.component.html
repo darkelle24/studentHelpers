@@ -1,8 +1,8 @@
 <div class="barCard">
 
-    <img class="barImage" [src]="bar.image" alt="">
+    <img #img class="barImage" [src]="bar.image" alt="">
 
-    <div class="barContenu">
+    <div class="barContenu" [style.max-height]="'calc(400px - ' + img.offsetHeight + 'px - 2rem - 1rem'">
         <div class="barTitle">{{bar.title}}</div>
         <div class="container">
             <div class="barText">
