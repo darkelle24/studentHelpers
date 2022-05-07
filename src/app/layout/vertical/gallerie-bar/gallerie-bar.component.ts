@@ -74,7 +74,7 @@ export class GallerieBarComponent implements OnInit, OnDestroy {
   countdown() {
     this.countdownIntervale = setInterval(() => {
       this.next()
-    }, 4000)
+    }, 3000)
   }
 
   prev() {
