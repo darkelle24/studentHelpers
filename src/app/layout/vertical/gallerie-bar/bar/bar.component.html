@@ -10,8 +10,8 @@
             </div>
         </div>
         <div class="barBtnContainer">
-            <a target="_blank" [href]="bar.position" mat-button class="barBtn">Emplacement</a>
-            <a target="_blank" *ngIf="bar.siteWeb" [href]="bar.siteWeb" mat-button class="barBtn">Site web</a>
+            <button (click)="log('Position', bar.position)" mat-button class="barBtn">Emplacement</button>
+            <button (click)="log('WebSite', bar.siteWeb)" *ngIf="bar.siteWeb" mat-button class="barBtn">Site web</button>
         </div>
     </div>
 </div>
