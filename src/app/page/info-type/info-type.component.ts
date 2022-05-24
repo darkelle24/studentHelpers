@@ -54,7 +54,7 @@ export class InfoTypeComponent implements OnInit {
             priority: value.priority,
             type: value.topic.name,
             title: value.title,
-            content: "",
+            content: value.description,
             typeColor: value.topic.color,
             idType: value.topic.id
           }
