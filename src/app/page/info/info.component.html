@@ -17,7 +17,11 @@
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="country-list">
-                <p class="info" *ngFor="let info of item.info">{{info}}</p>
+                <div *ngFor="let info of item.content">
+                    <p *ngIf="info.type === 'text'">{{info.content}}</p>
+                    <img *ngIf="info.type === 'image'" [src]="info.url" alt="">
+                    <h2 *ngIf="info.type === 'title'">{{info.content}}</h2>
+                </div>
                 <mat-expansion-panel *ngIf="item.links && item.links.length > 0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title>

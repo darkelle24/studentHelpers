@@ -1,4 +1,4 @@
 export interface InfoInterface {
   name: string,
-  info: string[]
+  content: any[]
 }

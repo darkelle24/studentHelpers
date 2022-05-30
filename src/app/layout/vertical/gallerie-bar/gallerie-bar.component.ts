@@ -39,9 +39,9 @@ export class GallerieBarComponent implements OnInit, OnDestroy {
 
   listBar: any[] = [
     { image: '../../../../../assets/delirium.jpg', title: 'Delirium', description: 'Bar avec plus de 2 000 bières, concerts le jeudi soir et objets de déco sur l\'univers de la brasserie.', siteWeb: 'https://www.deliriumvillage.com/', position: 'https://g.page/deliriumvillage?share' },
-    { image: '../../../../../assets/cobra_bar-galley.jpg', title: 'Cobra bar-gallery', description: '', siteWeb: 'https://www.cobrabar.be/', position: 'https://g.page/CobrabarBrussels?share' },
-    { image: '../../../../../assets/bar_lianes.png', title: 'Bar Lianes', description: '', siteWeb: 'https://www.bruzz.be/bar-llanes-2011-06-24', position: 'https://goo.gl/maps/JNHzxrxSnJtWtKWc9' },
-    { image: '../../../../../assets/cherry_bar.png', title: 'Cherry Bar', description: '', siteWeb: 'https://www.facebook.com/cherry.bar.brussel/', position: 'https://goo.gl/maps/aJTcdGGvYd5mhtp8A' }
+    { image: '../../../../../assets/cobra_bar-galley.jpg', title: 'Cobra bar-gallery', description: "L'intérieur chaleureux en bois combiné à de douces mélodies mélancoliques crée une bulle de détente dans laquelle vous pouvez déguster une large sélection de whiskies. Après plus de deux décennies, Cobra continue à offrir une échappatoire confortable aux rues agitées de Bruxelles.", siteWeb: 'https://www.cobrabar.be/', position: 'https://g.page/CobrabarBrussels?share' },
+    { image: '../../../../../assets/bar_lianes.png', title: 'Bar Lianes', description: "Avec le Soleil à côté et le chemin de Saint-Jacques-de-Compostelle sur le pas de la porte, l'image espagnole fait fureur. Le Bar Llanes est peut-être bruxellois, mais il est aussi un peu ibérique. Comme dans un vrai pub, les huit tables sont directement opposées les unes aux autres. Quatre contre chaque mur. Dans les coins, quelques étagères discrètes et une machine à sous.", siteWeb: 'https://www.bruzz.be/bar-llanes-2011-06-24', position: 'https://goo.gl/maps/JNHzxrxSnJtWtKWc9' },
+    { image: '../../../../../assets/cherry_bar.png', title: 'Cherry Bar', description: "Bar typiquement belge où il fait bon vivre.", siteWeb: 'https://www.facebook.com/cherry.bar.brussel/', position: 'https://goo.gl/maps/aJTcdGGvYd5mhtp8A' }
   ]
 
   first: any = undefined

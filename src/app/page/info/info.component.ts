@@ -87,7 +87,7 @@ export class InfoComponent implements OnInit, OnDestroy {
         values.forEach((value: any) => {
           let toReturn: InfoInterface = {
             name: value.title,
-            info: value.content.split('\n'),
+            content: value.content,
           }
 
           toShow.push(toReturn)
