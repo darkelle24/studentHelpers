@@ -19,7 +19,9 @@
             <div class="country-list">
                 <div *ngFor="let info of item.content">
                     <p *ngIf="info.type === 'text'">{{info.content}}</p>
-                    <img *ngIf="info.type === 'image'" [src]="info.url" alt="">
+                    <div style="display: flex;justify-content: center;">
+                        <img *ngIf="info.type === 'image'" [src]="info.url" alt="">
+                    </div>
                     <h2 *ngIf="info.type === 'title'">{{info.content}}</h2>
                 </div>
                 <mat-expansion-panel *ngIf="item.links && item.links.length > 0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
